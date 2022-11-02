@@ -2,8 +2,6 @@ let input = document.querySelector(".input")
 let submit = document.querySelector(".add")
 let tasksDiv = document.querySelector(".tasks")
 let container = document.querySelector('.container')
-
-
 let arrayOfTasks = []
 
 if(localStorage.getItem('task')) {
@@ -11,8 +9,7 @@ if(localStorage.getItem('task')) {
 }
 
 const startList = () => {
-    if (input.value !== '') {
-      
+    if (input.value !== '') { 
       addTaskToArray(input.value)
       input.value = ''
 
@@ -52,18 +49,14 @@ const addElementsToPageFrom = (array) => {
     span.className = 'del'
     span.appendChild(document.createTextNode("Delete"));
     // Append Button To Main Div
-    div.appendChild(span)
-    
-    
+    div.appendChild(span)   
   }
 )}
-console.log(arrayOfTasks)
 // Delete
 tasksDiv.addEventListener('click', (e) => {
   if(e.target.classList.contains('del')){
     deleteTaskWith(e.target.parentElement.getAttribute('data-id'))
     e.target.parentElement.remove()
-
   }
   if(e.target.classList.contains('task')){
 
@@ -71,7 +64,6 @@ tasksDiv.addEventListener('click', (e) => {
 
   }
 })
-
 
 const  addDataToLocalStorageFrom = (arrayOfTasks) => {
 
@@ -81,22 +73,14 @@ const  addDataToLocalStorageFrom = (arrayOfTasks) => {
 
 const getDataFromLocalStorage = () => {
   // let data = window.localStorage.getItem("tasks");
-  
-    
-    addElementsToPageFrom(arrayOfTasks)
-
-
-  
+     addElementsToPageFrom(arrayOfTasks)
 }
 
-
 const deleteTaskWith = (taskId) => {
-  console.log(arrayOfTasks)
 arrayOfTasks = arrayOfTasks.filter(item => item.id != taskId )
 addDataToLocalStorageFrom(arrayOfTasks)
 } 
 getDataFromLocalStorage()
-
 submit.addEventListener('click',startList)
 
 
